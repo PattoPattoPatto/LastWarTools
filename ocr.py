@@ -9,17 +9,11 @@ Original file is located at
 
 # Cell ID: z8ugEM8_Or1u
 
-"""First, we need to install the `pytesseract` library and Tesseract OCR engine, along with the language data files for the languages you need."""
 
 # Cell ID: 78efcc2e
 !apt-get update
 !apt-get install tesseract-ocr libtesseract-dev tesseract-ocr-eng tesseract-ocr-chi-sim tesseract-ocr-kor tesseract-ocr-jpn
 !pip install pytesseract Pillow
-
-"""Now, you can use `pytesseract` to perform OCR. You'll need to upload your image to Colab or access it from a cloud storage service.
-
-Here's an example using a placeholder for your image file:
-"""
 
 # Cell ID: fa2280d4
 import pytesseract
@@ -80,13 +74,6 @@ Warzone #27
 
 Warzone #27
 
-**To use this code:**
-
-1.  **Upload your image:** In the Colab file browser (folder icon on the left), upload the image file you want to process.
-2.  **Update `image_path`:** Change `'your_image.png'` in the code to the actual name of your uploaded image file.
-3.  **Run the cells:** Execute the code cells sequentially.
-
-This will print the extracted text from your image. Remember that the accuracy can still depend on the image quality and the clarity of the text.
 
 [Rac] Riz Maui
 
@@ -167,14 +154,7 @@ except FileNotFoundError:
 except Exception as e:
     print(f"An error occurred: {e}")
 
-"""**Important Notes:**
 
-1.  **Adjust Threshold:** The `threshold` value is crucial and will likely need to be adjusted based on the specific brightness and contrast of your image. Experiment with different values to find what best isolates the black text without picking up too much background noise.
-2.  **Experiment with PSM:** After thresholding, the image might have a different appearance, so you might need to experiment with different `psm` values in the `pytesseract.image_to_string` function call to see which one works best on the processed image.
-3.  **Display Processed Image:** Uncomment the lines at the end of the code cell (`from IPython.display import display` and `display(inverted_img)`) to see the image after thresholding and inversion. This can help you determine if the threshold is set correctly.
-
-We can iterate through different threshold values and evaluate the OCR output against the expected text to find the optimal threshold for your image.
-"""
 
 # Cell ID: 4e00703c
 import pytesseract
@@ -257,12 +237,6 @@ except FileNotFoundError:
 except Exception as e:
     print(f"An error occurred: {e}")
 
-"""**Note:**
-
-*   I've included a placeholder for the `expected_text`. **Please manually copy the content from your markdown cell (`pdArBHB0TLKV`) and paste it into the `expected_text` variable in the code above.**
-*   The accuracy calculation is a simple character-based ratio. For more nuanced evaluation, you might need a more sophisticated comparison method.
-*   You can adjust the `range()` in the `for` loop to explore a different range of threshold values or change the step size.
-"""
 
 # Cell ID: bebff107
 # Assuming 'text_processed_thresholded' variable contains the output from the previous OCR cell (fce5e8a3)
@@ -280,7 +254,6 @@ processed_text_thresholded = '\n'.join(desired_lines_thresholded)
 print("Processed Text (Every Other Line after Thresholding):")
 print(processed_text_thresholded)
 
-"""**Note:** This code assumes a consistent pattern in the output of the thresholded OCR where the desired information is on the first, third, fifth, etc., lines and the unwanted information is on the second, fourth, sixth, etc., lines. If the pattern is different, you might need to adjust the slicing `lines_thresholded[0::2]`."""
 
 # Cell ID: 23994ede
 !pip install opencv-python
@@ -349,12 +322,6 @@ except FileNotFoundError as e:
 except Exception as e:
     print(f"An error occurred: {e}")
 
-"""**Notes:**
-
-*   The `white_threshold` and the percentage check (`white_percentage > 90`) might need to be adjusted based on how "white" the separation lines are in your image.
-*   The logic for defining `player_blocks` assumes that the white lines are consistent separators between blocks. You might need to fine-tune the `if row - start_row > 10:` condition based on the spacing in your image.
-*   This code only identifies the row ranges for each block. The next steps will involve cropping these blocks and applying further processing or OCR to each one.
-"""
 
 # Cell ID: 200c2369
 import pytesseract
@@ -421,13 +388,6 @@ except NameError:
 except Exception as e:
     print(f"An error occurred: {e}")
 
-"""**Notes:**
-
-*   This code assumes that `img_cv2` and `player_blocks` variables from the previous cell (`ba263ccf`) are available in the environment.
-*   I've included the thresholding and inversion steps within the loop for each cropped block, using the best threshold we found earlier (105). You can adjust this or remove these steps if you find they don't help for individual blocks.
-*   You might need to experiment with the `psm` value in `pytesseract.image_to_string` for the individual blocks to get the best results.
-*   The `extracted_data` list now contains the raw OCR output for each player block. The next step would be to parse each string in this list to specifically extract the clan tag and username.
-"""
 
 # Cell ID: a64b1cb7
 # Assuming 'extracted_data' from the previous cell is available
@@ -500,13 +460,7 @@ print("\nParsed Data:")
 for entry in parsed_data:
     print(entry)
 
-"""**Notes:**
 
-*   This code assumes that the clan tag is always on a line and enclosed in square brackets `[]`.
-*   It takes the text after the closing square bracket as the username on that same line.
-*   It includes a basic fallback to treat a line without a clan tag as a potential username, but you might need to refine this logic based on the actual variations in your OCR output.
-*   The `parsed_data` list contains dictionaries with the block number, extracted clan tag, and username.
-"""
 
 # Cell ID: b485f657
 # Assuming 'extracted_data' from the previous cell is available
@@ -1371,15 +1325,7 @@ except NameError as e:
 except Exception as e:
     print(f"An error occurred: {e}")
 
-"""# Cell ID: 8c753b99
-First, we need to install the `pytesseract` library and Tesseract OCR engine, along with the language data files for the languages you need.
-
-# Cell ID: 670d7eea
-Now, you can use `pytesseract` to perform OCR. You'll need to upload your image to Colab or access it from a cloud storage service.
-
-Here's an example using a placeholder for your image file:
-
-# Cell ID: pdArBHB0TLKV
+"""
 [Rac] Riz Maui
 
 Warzone #27
@@ -1408,76 +1354,4 @@ Warzone #27
 
 Warzone #27
 
-# Cell ID: c4bdac22
-**To use this code:**
-
-1.  **Upload your image:** In the Colab file browser (folder icon on the left), upload the image file you want to process.
-2.  **Update `image_path`:** Change `'your_image.png'` in the code to the actual name of your uploaded image file.
-3.  **Run the cells:** Execute the code cells sequentially.
-
-This will print the extracted text from your image. Remember that the accuracy can still depend on the image quality and the clarity of the text.
-
-# Cell ID: pB5c7GcoeUM5
-[Rac] Riz Maui
-
-[lolz] 베일 lolz
-
-[lolz] 도사 lolz
-
-[x3y] 空降
-
-[lolz] 폭주핑 lolz
-
-[Rac] Nada L
-
-[lolz] 우렁이 lolz
-
-# Cell ID: 2080996d
-**Note:** This code assumes a consistent pattern where the desired information is on the first, third, fifth, etc., lines and the unwanted "Warzone" information is on the second, fourth, sixth, etc., lines. If the pattern is different, you might need to adjust the slicing `lines[0::2]`.
-
-# Cell ID: 05b10767
-Based on the image description, we can use color thresholding to isolate the black text (clan tag and username) from the rest of the image before performing OCR.
-
-# Cell ID: f093cad7
-**Important Notes:**
-
-1.  **Adjust Threshold:** The `threshold` value is crucial and will likely need to be adjusted based on the specific brightness and contrast of your image. Experiment with different values to find what best isolates the black text without picking up too much background noise.
-2.  **Experiment with PSM:** After thresholding, the image might have a different appearance, so you might need to experiment with different `psm` values in the `pytesseract.image_to_string` function call to see which one works best on the processed image.
-3.  **Display Processed Image:** Uncomment the lines at the end of the code cell (`from IPython.display import display` and `display(inverted_img)`) to see the image after thresholding and inversion. This can help you determine if the threshold is set correctly.
-
-# Cell ID: be991db3
-We can iterate through different threshold values and evaluate the OCR output against the expected text to find the optimal threshold for your image.
-
-# Cell ID: 3a7901ce
-**Note:**
-
-*   I've included a placeholder for the `expected_text`. **Please manually copy the content from your markdown cell (`pdArBHB0TLKV`) and paste it into the `expected_text` variable in the code above.**
-*   The accuracy calculation is a simple character-based ratio. For more nuanced evaluation, you might need a more sophisticated comparison method.
-*   You can adjust the `range()` in the `for` loop to explore a different range of threshold values or change the step size.
-
-# Cell ID: e6abc184
-**Note:** This code assumes a consistent pattern in the output of the thresholded OCR where the desired information is on the first, third, fifth, etc., lines and the unwanted information is on the second, fourth, sixth, etc., lines. If the pattern is different, you might need to adjust the slicing `lines_thresholded[0::2]`.
-
-# Cell ID: e2b21b23
-**Notes:**
-
-*   The `white_threshold` and the percentage check (`white_percentage > 90`) might need to be adjusted based on how "white" the separation lines are in your image.
-*   The logic for defining `player_blocks` assumes that the white lines are consistent separators between blocks. You might need to fine-tune the `if row - start_row > 10:` condition based on the spacing in your image.
-*   This code only identifies the row ranges for each block. The next steps will involve cropping these blocks and applying further processing or OCR to each one.
-
-# Cell ID: eab029ef
-**Notes:**
-
-*   This code assumes that `img_cv2` and `player_blocks` variables from the previous cell (`ba263ccf`) are available in the environment.
-*   I've included the thresholding and inversion steps within the loop for each cropped block, using the best threshold we found earlier (105). You can adjust this or remove these steps if you find they don't help for individual blocks.
-*   You might need to experiment with the `psm` value in `pytesseract.image_to_string` for the individual blocks to get the best results.
-*   The `extracted_data` list now contains the raw OCR output for each player block. The next step would be to parse each string in this list to specifically extract the clan tag and username.
-
-# Cell ID: e9540212
-**Notes:**
-
-*   This code assumes that the clan tag is always on a line and enclosed in square brackets `[]`.
-*   It takes the text after the closing square bracket as the username on that same line.
-*   It includes a basic fallback to treat a line without a clan tag as a potential username, but you might need to refine this logic based on the actual variations in your OCR output.
-*   The `parsed_data` list contains dictionaries with the block number, extracted clan tag, and username.
 """
